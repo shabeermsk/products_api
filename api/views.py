@@ -7,6 +7,7 @@ from rest_framework import status
 from .models import Product
 from rest_framework import viewsets
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 class ProductList(generics.ListCreateAPIView):
@@ -32,9 +33,15 @@ class ProductCreate(generics.CreateAPIView):
         serializer.save(created_by=self.request.user)
 
 class ProductListView(generics.ListAPIView):
+    def get(self, request, *args, **kwargs):
+        print(request.user)
+        print(request.user.email)
+        print(request.user.first_name)
+        return super().get(request, *args, **kwargs)
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = (IsAuthenticated,)
 
 class ProductUpdate(generics.UpdateAPIView):
 

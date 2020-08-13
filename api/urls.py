@@ -9,5 +9,6 @@ urlpatterns = [
     path('products/update/<int:pk>/', views.ProductUpdate.as_view(), name='update'),
     path('products/delete/<int:pk>/', views.ProductDelete.as_view(), name='delete'),
     path('products/detail/<int:pk>/', views.ProductDetail.as_view(), name='detail'),
+    # path('social_sign_up/', views.SocialSignUp.as_view(), name="social_sign_up"),
 
 ]
